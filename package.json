@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "export PKG_CACHE_PATH=./pkg-cache && pkg index.js",
-    "build:debug": "export PKG_CACHE_PATH=./pkg-cache && pkg --debug index.js",
+    "build": "pkg --targets=node14-macos-x64 --debug index.js -o app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "pkg": {
     "scripts": "**/*.js",
-    "targets": ["node14-linux-arm64","node12-macos-x64"]
+    "targets": [
+      "node14-linux-x64",
+      "node14-macos-x64"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/tylerreece22/pkg-debugging/issues"
   },
-  "homepage": "https://github.com/tylerreece22/pkg-debugging#readme"
+  "homepage": "https://github.com/tylerreece22/pkg-debugging#readme",
+  "dependencies": {}
 }
