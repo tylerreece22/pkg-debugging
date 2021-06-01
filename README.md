@@ -24,11 +24,12 @@ Inspector module is a great addition to a Node application (especially in a case
 Although there are a lot of great profiling approaches out there (i.e. 0x, inspector module, clinicjs, etc) PKG significantly limits the ability to debug a production built application.
 
 ### Recommended Approach
-Use a low resource demanding profiler like 0x combined with native linux commands in production to prevent downtime and replicate the application in a local environment to do more in depth profiling. Unfortunately during this research, I was unable to find an alternive approach.
+Use a low resource demanding profiler like 0x combined with native linux commands in production to prevent downtime and replicate the application in a local environment to do more in depth profiling. Unfortunately during this research, I was unable to find an alternative approach.
 
 ### References
 * [Node Flame Graph](https://nodejs.org/en/docs/guides/diagnostics-flamegraph/)
 * [Multiple Profiling examples including the Inspector module](https://medium.com/voodoo-engineering/node-js-and-cpu-profiling-on-production-in-real-time-without-downtime-d6e62af173e2)
 * [Inspector Module Docs](https://nodejs.org/docs/latest-v14.x/api/inspector.html)
+* [PKG Docs](https://www.npmjs.com/package/pkg)
   
   
