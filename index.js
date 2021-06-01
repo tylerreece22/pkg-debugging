@@ -1,6 +1,6 @@
 const fs = require('fs')
-const inspector = require('inspector');
-const session = new inspector.Session();
+// const inspector = require('inspector');
+// const session = new inspector.Session();
 
 const delay = (ms) => {
     return new Promise(resolve => {
@@ -18,31 +18,29 @@ const printAllFiles = (dir) => {
     });
 }
 
-const addInspector = () => {
-    session.connect();
-
-    session.post('Profiler.enable', () => {
-        session.post('Profiler.start', () => {
-            // Invoke business logic under measurement here...
-
-            // some time later...
-            session.post('Profiler.stop', (err, { profile }) => {
-                // Write profile to disk, upload, etc.
-                if (!err) {
-                    fs.writeFileSync('./profile.json', JSON.stringify(profile));
-                }
-            });
-        });
-    });
-}
+// const addInspector = () => {
+//     session.connect();
+//
+//     session.post('Profiler.enable', () => {
+//         session.post('Profiler.start', () => {
+//             // Invoke business logic under measurement here...
+//
+//             // some time later...
+//             session.post('Profiler.stop', (err, { profile }) => {
+//                 // Write profile to disk, upload, etc.
+//                 if (!err) {
+//                     fs.writeFileSync('./profile.json', JSON.stringify(profile));
+//                 }
+//             });
+//         });
+//     });
+// }
 
 (async () => {
-    addInspector()
+    // addInspector() // Throws error because PKG does not like it
     while (true) {
         await delay(2000)
         console.log('----- working -----')
-        // const prof = fs.readFileSync(__dirname + '/../isolate*')
-        // console.log(prof)
         printAllFiles('./')
     }
 })()

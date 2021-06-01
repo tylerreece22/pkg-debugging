@@ -5,15 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "pkg --targets=node14-macos-x64 --debug index.js -o app",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "pkg": {
-    "scripts": "**/*.js",
-    "targets": [
-      "node14-linux-x64",
-      "node14-macos-x64"
-    ]
+    "build": "pkg --targets=node14-macos-x64 index.js -o app"
   },
   "repository": {
     "type": "git",
