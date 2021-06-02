@@ -1,5 +1,7 @@
 # PKG Debugging
-Discovery repo for debugging a pkg application. *NOTE: This README was written with the idea of debugging an application on a production server in mind. With that said, many of these approaches are practical on a local development environment*
+Discovery repo for debugging a pkg application.
+
+## Production Debugging
 
 ### Native Linux Commands
 * ```ps aux``` view all running processes. I recommend running this command with a ```| grep {pkg file dir name}``` so you can see the actual process
@@ -32,4 +34,56 @@ Use a low resource demanding profiler like 0x combined with native linux command
 * [Inspector Module Docs](https://nodejs.org/docs/latest-v14.x/api/inspector.html)
 * [PKG Docs](https://www.npmjs.com/package/pkg)
   
+## Combining Microservices into a Single Pkg app
+The purpose here is to retain runtime consistency and obfuscation while allowing breathing room for a longer term architecture. 
+
+### Example
+Entry point:
+
+```javascript
+const app1 = require('./express-app-1')
+const app2 = require('./express-app-2')
+
+app1()
+app2()
+```
+
+App 1:
+```javascript
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+res.send('Hello World from app 1!')
+})
+
+module.exports = () => app.listen(port, () => {
+console.log(`App 1 listening at http://localhost:${port}`)
+})
+```
+
+App 2:
+
+```javascript
+const express = require('express')
+const app = express()
+const port = 3001
+
+app.get('/', (req, res) => {
+res.send('Hello World from app 2!')
+})
+
+module.exports = () => app.listen(port, () => {
+console.log(`App 2 listening at http://localhost:${port}`)
+})
+```
+
+Result:
+```
+➜  pkg-debugging git:(master) ✗ ./microServiceApp 
+App 1 listening at http://localhost:3000
+App 2 listening at http://localhost:3001
+```
+
   
