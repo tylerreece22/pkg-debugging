@@ -12,12 +12,13 @@ Discovery repo for debugging a pkg application.
   * Highly limited
   
 ### Node Profiling with Flame Graph (External tools)
-* [0x](https://www.npmjs.com/package/0x) is a super simple flame graph generation package which even can profile PKG apps and does not require installation of linux modules
+* [0x](https://www.npmjs.com/package/0x) is a super simple flame graph generation package and does not require installation of linux modules
   * 0x has a [production specific "lightweight" approach](https://github.com/davidmarkclements/0x/blob/master/docs/production-servers.md#production-servers) as well
   * On the note of flame graphs```perf``` is a great as well but requires linux package installation and has more known issues than I am comfortable with
 * DRAWBACKS: 
   * Downtime
   * Data collected locally
+  * Does not work for PKG app
   
 ### Native Node "Inspector" Module
 Inspector module is a great addition to a Node application (especially in a case where all you have is a PKG app on a server somewhere) which even enables profiling files to be pushed to S3 but PKG does not play nice with it because [Debugging options are disallowed , as pkg executables are usually used for production environments.](https://github.com/vercel/pkg#error-err_inspector_not_available) so it renders this functionality useless unless the application is rebuild with the ```---debug``` flag. Sad day.
@@ -26,7 +27,7 @@ Inspector module is a great addition to a Node application (especially in a case
 Although there are a lot of great profiling approaches out there (i.e. 0x, inspector module, clinicjs, etc) PKG significantly limits the ability to debug a production built application.
 
 ### Recommended Approach
-Use a low resource demanding profiler like 0x combined with native linux commands in production to prevent downtime and replicate the application in a local environment to do more in depth profiling. Unfortunately during this research, I was unable to find an alternative approach.
+Use linux commands in production to prevent downtime and replicate the application in a local environment to do more in depth profiling. Unfortunately during this research, I was unable to find an alternative approach.
 
 ### References
 * [Node Flame Graph](https://nodejs.org/en/docs/guides/diagnostics-flamegraph/)
